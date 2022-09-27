@@ -7,8 +7,9 @@ import { port } from './config/environment.js'
 
 const app = express()
 
-app.use(express.json())
-app.use('/', logger)
+// Middleware 
+app.use(express.json()) // body parsing logger - enables us to obtain the body from the request
+app.use('/', logger) // logging middleware
 app.use('/api', express.Router())
 
 async function startServer() {
