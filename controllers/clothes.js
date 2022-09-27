@@ -1,4 +1,4 @@
-import Clothes from '../models/clothingItem'
+import Clothes from '../models/clothingItem.js'
 
 //* Controllers Middleware
 
