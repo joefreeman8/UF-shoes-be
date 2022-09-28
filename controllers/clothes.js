@@ -11,6 +11,7 @@ async function clothesIndex(_req, res) {
 // * Clothes Show
 async function clothesShow(req, res, next) {
   const { clothesId } = req.params
+  console.log(req)
   try {
     const clothesToFind = await Clothes.findById(clothesId)
     
