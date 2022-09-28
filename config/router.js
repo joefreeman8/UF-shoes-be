@@ -14,5 +14,7 @@ router.route('/clothes/:clothesId')
 router.route('/register')
   .post(auth.register)
 
+router.route('/login')
+  .post(auth.login)
 
 export default router
