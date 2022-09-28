@@ -1,6 +1,7 @@
 import express from 'express'
 import logger from './lib/logger.js'
 import router from './config/router.js'
+import errorHandler from './lib/errorHandler.js'
 
 import { connectDb } from './db/helpers.js'
 import { port } from './config/environment.js'
@@ -12,6 +13,7 @@ const app = express()
 app.use(express.json()) // body parsing logger - enables us to obtain the body from the request
 app.use('/', logger) // logging middleware
 app.use('/api', router)
+app.use(errorHandler)
 
 async function startServer() {
   try {

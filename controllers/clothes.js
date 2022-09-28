@@ -1,3 +1,4 @@
+import { NotFound } from '../lib/errors.js'
 import Clothes from '../models/clothingItem.js'
 
 //* Controllers Middleware
@@ -11,12 +12,11 @@ async function clothesIndex(_req, res) {
 // * Clothes Show
 async function clothesShow(req, res, next) {
   const { clothesId } = req.params
-  console.log(req)
   try {
     const clothesToFind = await Clothes.findById(clothesId)
     
     if (!clothesToFind) {
-      throw new Error()
+      throw new NotFound()
     }
     return res.status(200).json(clothesToFind)
   } catch (err) {
