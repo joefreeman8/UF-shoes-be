@@ -6,5 +6,7 @@ const router = express.Router()
 router.route('/clothes')
   .get(clothes.index)
 
-
+router.route('/clothes/:clothesId')
+  .get(clothes.show)
+  
 export default router
