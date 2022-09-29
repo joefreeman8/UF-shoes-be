@@ -2,11 +2,30 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import mongooseUniqueValidator from 'mongoose-unique-validator'
 
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true, maxLength: 50 },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 })
+
+
+// Virtual schema to add clothes to basket (same as a like button)
+userSchema
+  .virtual('likedClothes', {
+    ref: 'Clothes',
+    localField: '_id',
+    foreignField: 'likedBy',
+  })
+  .get(function (likedClothes) {
+    if (!likedClothes.length) return 'No Liked Clothes'
+
+    return likedClothes.map(clothes => ({
+      _id: clothes._id,
+      name: clothes.name,
+      image: clothes.image,
+    }))
+  })
 
 userSchema.set('toJSON', {
   virtuals: true,
