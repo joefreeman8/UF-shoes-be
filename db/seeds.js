@@ -19,9 +19,9 @@ async function seed() {
     })
     console.log('🤖🌱 Admin User Created')
 
-    const productDataWithUsers = productData.map(productItem => {
-      productItem.addedby = user
-      return productItem
+    const productDataWithUsers = productData.map(product => {
+      product.addedby = user
+      return product
     })
 
     const createdProducts = await Product.create(productDataWithUsers)

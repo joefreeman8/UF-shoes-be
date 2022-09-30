@@ -3,13 +3,13 @@ import Product from '../models/product.js'
 
 //* Controllers Middleware
 
-//* products Index
+//* Products Index
 async function productsIndex(_req, res) {
   const products = await Product.find()
   return res.status(200).json(products)
 }
 
-// * products Show
+// * Products Show
 async function productsShow(req, res, next) {
   const { productsId } = req.params
   try {
@@ -69,6 +69,31 @@ async function productCommentCreate(req, res, next) {
   }
 }
 
+// * Delete a Comment
+async function productCommentDelete(req, res, next) {
+  const { productId, commentId } = req.params
+  const { currentUser } = req
+  try {
+    const product = await Product.findById(productId) // find the product
+    if (!product) {
+      throw new NotFound()
+    }
+
+    const commentToDelete = product.comments.id(commentId) // find the comment from the product above
+    if (!commentToDelete) {
+      throw new NotFound()
+    }
+    if (!commentToDelete.addedBy.equals(currentUser)) { // ensures only the owner of the comment can delete
+      throw new Unauthorized()
+    }
+
+    commentToDelete.remove() // deletes comment
+    await product.save() // save
+    return res.sendStatus(204) // send status to show success
+  } catch (err) {
+    next(err)
+  }
+}
 
 
 export default {
@@ -76,4 +101,5 @@ export default {
   show: productsShow,
   basket: addToBasket,
   commentCreate: productCommentCreate,
+  commentDelete: productCommentDelete,
 }
