@@ -30,12 +30,12 @@ async function login(req, res, next) {
   }
 }
 
-// Reverse relationship so the user can see all the clothes they liked/added to basket: 
+// Reverse relationship so the user can see all the products they liked/added to basket: 
 
 async function basket(req, res, next) {
   const { userId } = req.params
   try {
-    const user = await User.findById(userId).populate('likedClothes')
+    const user = await User.findById(userId).populate('likedProducts')
     if (!user) {
       throw new NotFound()
     }

@@ -8,11 +8,14 @@ const router = express.Router()
 router.route('/products')
   .get(products.index)
 
-router.route('/products/:productsId')
+router.route('/products/:productId')
   .get(products.show)
 
-router.route('/products/:productsId/basket')
+router.route('/products/:productId/basket')
   .post(secureRoute, products.basket)
+
+router.route('/products/:productId/comments')
+  .post(secureRoute, products.commentCreate)
 
 router.route('/register')
   .post(auth.register)

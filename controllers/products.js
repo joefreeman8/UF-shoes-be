@@ -1,4 +1,4 @@
-import { NotFound } from '../lib/errors.js'
+import { NotFound, Unauthorized } from '../lib/errors.js'
 import Product from '../models/product.js'
 
 //* Controllers Middleware
@@ -46,8 +46,34 @@ async function addToBasket(req, res, next){
   }
 }
 
+
+// * COMMENTS
+// * Create a Comment
+async function productCommentCreate(req, res, next) {
+  const { productId } = req.params
+  const { currentUser } = req
+  try {
+    const commentedProduct = await Product.findById(productId) // find the product
+    if (!commentedProduct) {
+      throw new NotFound()
+    }
+
+    const createdComment = commentedProduct.comments.create({ ...req.body, addedBy: currentUser })
+    commentedProduct.comments.push(createdComment) // push comment into array
+    await commentedProduct.save() // save
+
+    return res.status(201).json(commentedProduct)
+
+  } catch (err) {
+    next(err)
+  }
+}
+
+
+
 export default {
   index: productsIndex,
   show: productsShow,
   basket: addToBasket,
+  commentCreate: productCommentCreate,
 }

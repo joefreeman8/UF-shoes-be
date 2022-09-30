@@ -1,6 +1,6 @@
 import { connectDb, disconnectDb, truncateDb } from './helpers.js'
-import Clothes from '../models/clothingItem.js'
-import clothingItemData from './data/clothingItem.js'
+import Product from '../models/product.js'
+import productData from './data/product.js'
 import User from '../models/user.js'
 
 async function seed() {
@@ -19,13 +19,13 @@ async function seed() {
     })
     console.log('🤖🌱 Admin User Created')
 
-    const clothingDataWithUsers = clothingItemData.map(clothingItem => {
-      clothingItem.addedby = user
-      return clothingItem
+    const productDataWithUsers = productData.map(productItem => {
+      productItem.addedby = user
+      return productItem
     })
 
-    const createdClothes = await Clothes.create(clothingDataWithUsers)
-    console.log(`🤖🌱 ${createdClothes.length} Clothing Items Created`)
+    const createdProducts = await Product.create(productDataWithUsers)
+    console.log(`🤖🌱 ${createdProducts.length} Product Items Created`)
 
   } catch (err) {
     console.log('🤖🌱❌ Something Went Wrong Seeding the DB')

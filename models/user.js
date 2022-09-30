@@ -10,20 +10,20 @@ const userSchema = new mongoose.Schema({
 })
 
 
-// Virtual schema to add clothes to basket (same as a like button)
+// Virtual schema to add products to basket (same as a like button)
 userSchema
-  .virtual('likedClothes', {
-    ref: 'Clothes',
+  .virtual('likedProducts', {
+    ref: 'Products',
     localField: '_id',
     foreignField: 'likedBy',
   })
-  .get(function (likedClothes) {
-    if (!likedClothes.length) return 'No Liked Clothes'
+  .get(function (likedProducts) {
+    if (!likedProducts.length) return 'No Liked Products'
 
-    return likedClothes.map(clothes => ({
-      _id: clothes._id,
-      name: clothes.name,
-      image: clothes.image,
+    return likedProducts.map(products => ({
+      _id: products._id,
+      name: products.name,
+      image: products.image,
     }))
   })
 
