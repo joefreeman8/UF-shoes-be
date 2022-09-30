@@ -1,18 +1,18 @@
 import express from 'express'
-import clothes from '../controllers/clothes.js'
+import products from '../controllers/products.js'
 import auth from '../controllers/auth.js'
 import secureRoute from '../lib/secureRoute.js'
 
 const router = express.Router()
 
-router.route('/clothes')
-  .get(clothes.index)
+router.route('/products')
+  .get(products.index)
 
-router.route('/clothes/:clothesId')
-  .get(clothes.show)
+router.route('/products/:productsId')
+  .get(products.show)
 
-router.route('/clothes/:clothesId/basket')
-  .post(secureRoute, clothes.basket)
+router.route('/products/:productsId/basket')
+  .post(secureRoute, products.basket)
 
 router.route('/register')
   .post(auth.register)

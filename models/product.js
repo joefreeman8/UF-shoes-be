@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import mongooseUniqueValidator from 'mongoose-unique-validator'
 
 
-const clothingItemSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   type: { type: String, required: true },
   name: { type: String, required: true, unique: true },
   image: { type: String, required: true },
@@ -10,6 +10,6 @@ const clothingItemSchema = new mongoose.Schema({
   likedBy: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
 })
 
-clothingItemSchema.plugin(mongooseUniqueValidator)
+productSchema.plugin(mongooseUniqueValidator)
 
-export default mongoose.model('Clothes', clothingItemSchema)
+export default mongoose.model('Product', productSchema)
