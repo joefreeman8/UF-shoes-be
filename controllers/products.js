@@ -11,9 +11,9 @@ async function productsIndex(_req, res) {
 
 // * Products Show
 async function productsShow(req, res, next) {
-  const { productsId } = req.params
+  const { productId } = req.params
   try {
-    const productsToFind = await Product.findById(productsId)
+    const productsToFind = await Product.findById(productId)
 
     if (!productsToFind) {
       throw new NotFound()
@@ -26,14 +26,13 @@ async function productsShow(req, res, next) {
 
 // * Like / Adding to basket - Toggle
 async function addToBasket(req, res, next){
-  const { productsId } = req.params
+  const { productId } = req.params
   try {
-    const productsToAddToBasket = await Product.findById(productsId)
+    const productsToAddToBasket = await Product.findById(productId)
     if (!productsToAddToBasket) {
       throw new NotFound()
     }
     const userId = req.currentUser._id
-    console.log(userId)
     if (productsToAddToBasket.likedBy.includes(userId)) {
       productsToAddToBasket.likedBy.remove(userId)
     } else {
@@ -54,6 +53,8 @@ async function productCommentCreate(req, res, next) {
   const { currentUser } = req
   try {
     const commentedProduct = await Product.findById(productId) // find the product
+      
+
     if (!commentedProduct) {
       throw new NotFound()
     }
