@@ -11,21 +11,21 @@ const userSchema = new mongoose.Schema({
 
 
 // Virtual schema to add products to basket (same as a like button)
-userSchema
-  .virtual('likedProducts', {
-    ref: 'Products',
-    localField: '_id',
-    foreignField: 'likedBy',
-  })
-  .get(function (likedProducts) {
-    if (!likedProducts.length) return 'No Liked Products'
+// userSchema
+//   .virtual('likedProducts', {
+//     ref: 'Products',
+//     localField: '_id',
+//     foreignField: 'likedBy',
+//   })
+//   .get(function (likedProducts) {
+//     if (!likedProducts.length) return 'No Liked Products'
 
-    return likedProducts.map(products => ({
-      _id: products._id,
-      name: products.name,
-      image: products.image,
-    }))
-  })
+//     return likedProducts.map(product => ({
+//       _id: product._id,
+//       name: product.name,
+//       image: product.image,
+//     }))
+//   })
 
 userSchema.set('toJSON', {
   virtuals: true,

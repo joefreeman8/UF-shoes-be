@@ -5,10 +5,10 @@ import secureRoute from '../lib/secureRoute.js'
 
 const router = express.Router()
 
-router.route('/products')
+router.route('/shop')
   .get(products.index)
 
-router.route('/products/:productId')
+router.route('/shop/:productId')
   .get(products.show)
 
 router.route('/products/:productId/basket')

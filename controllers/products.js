@@ -14,6 +14,7 @@ async function productsShow(req, res, next) {
   const { productId } = req.params
   try {
     const productsToFind = await Product.findById(productId)
+      .populate('addedBy')
 
     if (!productsToFind) {
       throw new NotFound()
@@ -25,7 +26,7 @@ async function productsShow(req, res, next) {
 }
 
 // * Like / Adding to basket - Toggle
-async function addToBasket(req, res, next){
+async function addToBasket(req, res, next) {
   const { productId } = req.params
   try {
     const productsToAddToBasket = await Product.findById(productId)
@@ -53,7 +54,7 @@ async function productCommentCreate(req, res, next) {
   const { currentUser } = req
   try {
     const commentedProduct = await Product.findById(productId) // find the product
-      
+
 
     if (!commentedProduct) {
       throw new NotFound()
