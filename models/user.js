@@ -5,27 +5,28 @@ import mongooseUniqueValidator from 'mongoose-unique-validator'
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true, maxLength: 50 },
+  isAdmin: { type: Boolean },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 })
 
 
 // Virtual schema to add products to basket (same as a like button)
-// userSchema
-//   .virtual('likedProducts', {
-//     ref: 'Products',
-//     localField: '_id',
-//     foreignField: 'likedBy',
-//   })
-//   .get(function (likedProducts) {
-//     if (!likedProducts.length) return 'No Liked Products'
+userSchema
+  .virtual('likedProducts', {
+    ref: 'Products',
+    localField: '_id',
+    foreignField: 'likedBy',
+  })
+  .get(function (likedProducts) {
+    if (!likedProducts) return 'No Liked Products'
 
-//     return likedProducts.map(product => ({
-//       _id: product._id,
-//       name: product.name,
-//       image: product.image,
-//     }))
-//   })
+    return likedProducts.map(product => ({
+      _id: product._id,
+      name: product.name,
+      image: product.image,
+    }))
+  })
 
 userSchema.set('toJSON', {
   virtuals: true,

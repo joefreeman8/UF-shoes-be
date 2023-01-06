@@ -1,29 +1,31 @@
 import express from 'express'
-import products from '../controllers/products.js'
-import auth from '../controllers/auth.js'
+import productsController from '../controllers/productsController.js'
+import authController from '../controllers/authController.js'
+import reviewsController from '../controllers/reviewsController.js'
 import secureRoute from '../lib/secureRoute.js'
 
 const router = express.Router()
 
 router.route('/shop')
-  .get(products.index)
+  .get(productsController.index)
 
 router.route('/shop/:productId')
-  .get(products.show)
+  .get(productsController.show)
 
 router.route('/products/:productId/basket')
-  .post(secureRoute, products.basket)
+  .post(secureRoute, productsController.basket)
 
-router.route('/products/:productId/comments')
-  .post(secureRoute, products.commentCreate)
+router.route('/products/:productId/reviews')
+  .post(secureRoute, reviewsController.createReview)
 
-router.route('/products/:productId/comments/:commentId')
-  .delete(secureRoute, products.commentDelete)
+router.route('/products/:productId/reviews/:reviewId')
+  .put(secureRoute, reviewsController.updateReview)
+  .delete(secureRoute, reviewsController.deleteReview)
 
 router.route('/register')
-  .post(auth.register)
+  .post(authController.register)
 
 router.route('/login')
-  .post(auth.login)
+  .post(authController.login)
 
 export default router
