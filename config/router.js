@@ -12,13 +12,13 @@ router.route('/shop')
 router.route('/shop/:productId')
   .get(productsController.show)
 
-router.route('/products/:productId/basket')
+router.route('/shop/:productId/basket')
   .post(secureRoute, productsController.basket)
 
-router.route('/products/:productId/reviews')
+router.route('/shop/:productId/reviews')
   .post(secureRoute, reviewsController.createReview)
 
-router.route('/products/:productId/reviews/:reviewId')
+router.route('/shop/:productId/reviews/:reviewId')
   .put(secureRoute, reviewsController.updateReview)
   .delete(secureRoute, reviewsController.deleteReview)
 

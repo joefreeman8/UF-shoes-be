@@ -11,16 +11,17 @@ async function seed() {
     await truncateDb()
     console.log('🤖🌱 Data Dropped')
 
-    const user = await User.create({
+    const adminUser = await User.create({
       username: 'admin',
-      email: 'admin@email.com',
+      email: 'admin@admin.com',
       password: 'pass',
       passwordConfirmation: 'pass',
+      isAdmin: true
     })
     console.log('🤖🌱 Admin User Created')
 
     const productDataWithUsers = productData.map(product => {
-      product.addedBy = user
+      product.addedBy = adminUser
       return product
     })
 

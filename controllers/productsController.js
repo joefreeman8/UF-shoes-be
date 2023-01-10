@@ -1,4 +1,4 @@
-import { NotFound, Unauthorized } from '../lib/errors.js'
+import { NotFound } from '../lib/errors.js'
 import Product from '../models/product.js'
 
 //* Controllers Middleware
