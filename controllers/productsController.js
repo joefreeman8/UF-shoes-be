@@ -14,7 +14,7 @@ async function productsShow(req, res, next) {
   const { productId } = req.params
   try {
     const productsToFind = await Product.findById(productId)
-      .populate('addedBy')
+      .populate('reviews.addedBy')
 
     if (!productsToFind) {
       throw new NotFound()
