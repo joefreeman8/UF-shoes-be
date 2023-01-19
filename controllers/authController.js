@@ -19,11 +19,14 @@ async function login(req, res, next) {
     if (!userToLogin || !userToLogin.validatePassword(req.body.password)) {
       throw new Unauthorized()
     }
-    const token = jwt.sign({ sub: userToLogin._id }, secret, { expiresIn: '48 hours' })
-    
-    return res.status(202).json({
+    const token = jwt.sign(
+      { userId: userToLogin._id, isAdmin: userToLogin.isAdmin },
+      secret,
+      { expiresIn: '48 hours' })
+
+    return res.status(202).send({
       message: `Welcome Back ${userToLogin.username}!`,
-      token, 
+      token,
     })
   } catch (err) {
     next(err)
