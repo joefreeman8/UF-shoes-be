@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema({
 productSchema
   .virtual('avgRating')
   .get(function () {
-    if (!this.reviews.length) return 'No Average Rating'
+    if (!this.reviews.length) return 0
 
     return Math.round(this.reviews.reduce((acc, curr) => {
       return acc + curr.rating

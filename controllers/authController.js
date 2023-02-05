@@ -37,6 +37,7 @@ async function login(req, res, next) {
 
 async function basket(req, res, next) {
   const { userId } = req.params
+  console.log(req)
   try {
     const user = await User.findById(userId).populate('likedProducts')
     if (!user) {
