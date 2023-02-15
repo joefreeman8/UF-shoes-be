@@ -53,7 +53,6 @@ async function updateReview(req, res, next) {
 async function deleteReview(req, res, next) {
   const { productId, reviewId } = req.params
   const { currentUser } = req
-  console.log("Current User ->", currentUser)
 
   try {
     const product = await Product.findById(productId) // find the product
