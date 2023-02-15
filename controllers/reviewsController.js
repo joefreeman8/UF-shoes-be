@@ -64,7 +64,7 @@ async function deleteReview(req, res, next) {
     if (!reviewToDelete) {
       throw new NotFound()
     }
-    if (!reviewToDelete.addedBy.equals(currentUser) && !req.currentUser.isAdmin) { // ensures only the owner of the review can delete
+    if (!reviewToDelete.addedBy.equals(currentUser._id) && !req.currentUser.isAdmin) { // ensures only the owner of the review can delete
       throw new Unauthorized()
     }
 
