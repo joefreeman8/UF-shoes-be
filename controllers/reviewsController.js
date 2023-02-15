@@ -26,6 +26,7 @@ async function createReview(req, res, next) {
 async function updateReview(req, res, next) {
   const { productId, reviewId } = req.params
   const { currentUser } = req
+  console.log("CONSOLE LOG", currentUser)
   try {
     const product = await Product.findById(productId)
     if (!product) {
@@ -37,7 +38,7 @@ async function updateReview(req, res, next) {
       throw new NotFound()
     }
 
-    if (!reviewToEdit.addedBy.equals(currentUser)) {
+    if (!reviewToEdit.addedBy.equals(currentUser._id)) {
       throw new Unauthorized()
     }
 

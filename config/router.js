@@ -29,7 +29,7 @@ router.route('/shop/:productId/reviews/:reviewId')
 //  ! Auth Controllers 
 // view basket
 router.route('/basket/:userId')
-  .get(secureRoute, authController.basket)
+  .get(authController.basket)
 
 router.route('/register')
   .post(authController.register)
