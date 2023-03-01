@@ -323,7 +323,7 @@ export default [
     description: 'The Clarks Originals Caravan Shoes design was inspired by 1970s styles from the Clarks archives.',
   },
   {
-    brand: 'Clarks Orginals',
+    brand: 'Clarks Originals',
     name: 'Clarks Desert Trek',
     image: 'https://i.imgur.com/9WTrHND.png',
     price: 119.95,
