@@ -25,33 +25,10 @@ async function productsShow(req, res, next) {
   }
 }
 
-// * Like / Adding to basket - Toggle
-async function addToBasket(req, res, next) {
-  const { productId } = req.params
-  try {
-    const productsToAddToBasket = await Product.findById(productId)
-    if (!productsToAddToBasket) {
-      throw new NotFound()
-    }
-    const userId = req.currentUser._id
-    console.log(req.currentUser)
-    if (productsToAddToBasket.likedBy.includes(userId)) {
-      productsToAddToBasket.likedBy.remove(userId)
-    } else {
-      productsToAddToBasket.likedBy.push(userId)
-    }
-    await productsToAddToBasket.save()
-    return res.status(202).json(productsToAddToBasket)
-  } catch (err) {
-    next(err)
-  }
-}
-
 
 
 
 export default {
   index: productsIndex,
   show: productsShow,
-  basket: addToBasket,
 }

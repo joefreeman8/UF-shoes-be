@@ -1,7 +1,7 @@
 import User from '../models/user.js'
 import jwt from 'jsonwebtoken'
 import { secret } from '../config/environment.js'
-import { NotFound, Unauthorized } from '../lib/errors.js'
+import { Unauthorized } from '../lib/errors.js'
 
 
 async function register(req, res, next) {
@@ -33,23 +33,7 @@ async function login(req, res, next) {
   }
 }
 
-// Reverse relationship so the user can see all the products they liked/added to basket: 
-
-async function basket(req, res, next) {
-  const { userId } = req.params
-  try {
-    const user = await User.findById(userId).populate('basket')
-    if (!user) {
-      throw new NotFound()
-    }
-    return res.status(200).json(user)
-  } catch (err) {
-    next(err)
-  }
-}
-
 export default {
   register,
   login,
-  basket,
 }

@@ -14,11 +14,6 @@ router.route('/shop')
 router.route('/shop/:productId')
   .get(productsController.show)
 
-// add item to basket
-router.route('/shop/:productId/basket')
-  .post(secureRoute, productsController.basket)
-
-
 // ! Reviews Controllers
 router.route('/shop/:productId/reviews')
   .post(secureRoute, reviewsController.createReview)
@@ -28,10 +23,6 @@ router.route('/shop/:productId/reviews/:reviewId')
   .delete(secureRoute, reviewsController.deleteReview)
 
 //  ! Auth Controllers 
-// view basket
-router.route('/basket/:userId')
-  .get(authController.basket)
-
 router.route('/register')
   .post(authController.register)
 
@@ -39,8 +30,17 @@ router.route('/login')
   .post(authController.login)
 
 // ! Basket Controllers
+// view basket
+router.route('/basket/:userId')
+  .get(secureRoute, basketController.basket)
+
+// add item to basket
+router.route('/shop/:productId/basket')
+  .post(secureRoute, basketController.toggleBasketItem)
+
 // delete from basket
 router.route('/basket/:userId/:productId')
   .delete(secureRoute, basketController.deleteBasketItem)
+
 
 export default router
