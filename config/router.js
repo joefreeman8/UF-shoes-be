@@ -3,10 +3,11 @@ import productsController from '../controllers/productsController.js'
 import authController from '../controllers/authController.js'
 import reviewsController from '../controllers/reviewsController.js'
 import secureRoute from '../lib/secureRoute.js'
+import basketController from '../controllers/basketController.js'
 
 const router = express.Router()
 
-// ! Products Cntrollers
+// ! Products Controllers
 router.route('/shop')
   .get(productsController.index)
 
@@ -36,5 +37,10 @@ router.route('/register')
 
 router.route('/login')
   .post(authController.login)
+
+// ! Basket Controllers
+// delete from basket
+router.route('/basket/:userId/:productId')
+  .delete(secureRoute, basketController.deleteBasketItem)
 
 export default router
