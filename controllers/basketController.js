@@ -7,6 +7,7 @@ async function basket(req, res, next) {
   const { userId } = req.params
   try {
     const user = await User.findById(userId).populate('basket')
+
     if (!user) {
       throw new NotFound()
     }
@@ -26,7 +27,7 @@ async function toggleBasketItem(req, res, next) {
       throw new NotFound()
     }
     const userId = req.currentUser._id
-    console.log(req.currentUser)
+
     if (productsToAddToBasket.likedBy.includes(userId)) {
       productsToAddToBasket.likedBy.remove(userId)
     } else {

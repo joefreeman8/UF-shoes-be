@@ -2,8 +2,8 @@ import express from 'express'
 import productsController from '../controllers/productsController.js'
 import authController from '../controllers/authController.js'
 import reviewsController from '../controllers/reviewsController.js'
-import secureRoute from '../lib/secureRoute.js'
 import basketController from '../controllers/basketController.js'
+import secureRoute from '../lib/secureRoute.js'
 
 const router = express.Router()
 
