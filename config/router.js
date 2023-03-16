@@ -32,9 +32,10 @@ router.route('/login')
 // ! Basket Controllers
 // view basket
 router.route('/basket/:userId')
-  .get(secureRoute, basketController.basket)
+  .get(secureRoute, basketController.viewBasket)
 
-// add item to basket
+
+// toggle item to basket
 router.route('/shop/:productId/basket')
   .post(secureRoute, basketController.toggleBasketItem)
 

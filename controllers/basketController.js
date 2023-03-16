@@ -63,7 +63,7 @@ async function deleteBasketItem(req, res, next) {
 }
 
 export default {
-  basket: basket,
+  viewBasket: basket,
   deleteBasketItem,
   toggleBasketItem
 }
