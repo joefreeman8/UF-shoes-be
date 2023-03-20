@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import mongooseUniqueValidator from 'mongoose-unique-validator'
+// import mongooseUniqueValidator from 'mongoose-unique-validator'
 
 const reviewSchema = new mongoose.Schema({
   text: { type: String, required: true, maxLength: 300 },
@@ -37,6 +37,6 @@ productSchema
     virtuals: true,
   })
 
-productSchema.plugin(mongooseUniqueValidator)
+// productSchema.plugin(mongooseUniqueValidator)
 
 export default mongoose.model('Product', productSchema)

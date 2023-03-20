@@ -68,7 +68,7 @@ async function deleteReview(req, res, next) {
       throw new Unauthorized()
     }
 
-    reviewToDelete.deleteOne() // deletes review, previously used .remove but this is deprecated now.
+    reviewToDelete.deleteOne() // deletes review, previously used .remove but this is deprecated by mongoose now.
 
     await product.save() // save
     return res.sendStatus(204) // send status to show success

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
-import mongooseUniqueValidator from 'mongoose-unique-validator'
+// import mongooseUniqueValidator from 'mongoose-unique-validator'
 
 
 const userSchema = new mongoose.Schema({
@@ -70,6 +70,6 @@ userSchema.methods.validatePassword = function (password) {
   return bcrypt.compareSync(password, this.password)
 }
 
-userSchema.plugin(mongooseUniqueValidator)
+// userSchema.plugin(mongooseUniqueValidator)
 
 export default mongoose.model('User', userSchema)

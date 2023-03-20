@@ -53,7 +53,7 @@ async function deleteBasketItem(req, res, next) {
     const userId = req.currentUser._id
 
     if (productToDeleteFromBasket.likedBy.includes(userId)) {
-      productToDeleteFromBasket.likedBy.remove(userId)
+      productToDeleteFromBasket.likedBy.remove(userId) // potentially need to change this to deleteOne()
     }
     await productToDeleteFromBasket.save()
     return res.sendStatus(204)
