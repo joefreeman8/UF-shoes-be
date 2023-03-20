@@ -29,6 +29,8 @@ userSchema
     }))
   })
 
+
+// Removes the password whenever a document is converted back into JSON
 userSchema.set('toJSON', {
   virtuals: true,
   transform(_doc, json) {
