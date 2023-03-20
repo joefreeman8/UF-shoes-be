@@ -64,11 +64,12 @@ async function deleteReview(req, res, next) {
     if (!reviewToDelete) {
       throw new NotFound()
     }
-    if (!reviewToDelete.addedBy.equals(currentUser._id) && !req.currentUser.isAdmin) { // ensures only the owner of the review can delete
+    if (!reviewToDelete.addedBy.equals(currentUser._id) && !currentUser.isAdmin) { // ensures only the owner of the review can delete
       throw new Unauthorized()
     }
 
-    reviewToDelete.remove() // deletes review
+    reviewToDelete.deleteOne() // deletes review, previously used .remove but this is deprecated now.
+
     await product.save() // save
     return res.sendStatus(204) // send status to show success
   } catch (err) {
