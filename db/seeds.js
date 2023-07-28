@@ -8,7 +8,6 @@ async function seed() {
     await connectDb()
     console.log('🤖🌱 Database Connected')
 
-    // ! This worked when having DB stored locally, however error below occurs when storing db on mongoDB
     // * MongoServerError: user is not allowed to do action [dropDatabase] on [urban-footwear-db.]
     // await truncateDb()
     // console.log('🤖🌱 Data Dropped')

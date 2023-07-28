@@ -1,11 +1,11 @@
 {
-  "name": "ezis-server",
+  "name": "urban-footwear-server",
   "version": "1.0.0",
   "description": "backend clothing app",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon index.js",
     "seed": "node db/seeds.js"
