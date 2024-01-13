@@ -38,7 +38,7 @@ Here I have built a fullstack MERN app for a footwear e-commerce site.
 ## Deployed Version
 [View the deployed version of the app](https://urban-footwear.netlify.app/)
 
-![Screen Grab of App](./src/assets/viewShoePage.png)
+![Screen Grab of App](./assets/viewShoePage.png)
 
 
 ## Planning
