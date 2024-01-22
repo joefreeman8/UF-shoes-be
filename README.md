@@ -1,4 +1,4 @@
-# Project 3 - Urban Footwear Co.
+# Urban Footwear Co.
 ## Overview
 Here I have built a fullstack MERN app for a footwear e-commerce site. 
 
