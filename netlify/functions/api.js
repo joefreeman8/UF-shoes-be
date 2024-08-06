@@ -13,7 +13,6 @@ const app = express()
 
 // Middleware 
 app.use(express.json()) // body parsing logger - enables us to obtain the body from the request
-
 app.use(cors())
 app.use('/', logger) // logging middleware
 app.use('/api', router)
