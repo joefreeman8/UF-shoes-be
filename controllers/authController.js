@@ -20,7 +20,7 @@ async function login(req, res, next) {
       throw new Unauthorized()
     }
     const token = jwt.sign(
-      { userId: userToLogin._id, isAdmin: userToLogin.isAdmin },
+      { userId: userToLogin._id, username: userToLogin.username, isAdmin: userToLogin.isAdmin },
       secret,
       { expiresIn: '48 hours' })
 
