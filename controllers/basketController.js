@@ -23,19 +23,19 @@ async function basket(req, res, next) {
 async function toggleBasketItem(req, res, next) {
   const { productId } = req.params
   try {
-    const productsToAddToBasket = await Product.findById(productId)
-    if (!productsToAddToBasket) {
+    const product = await Product.findById(productId)
+    if (!product) {
       throw new NotFound()
     }
     const userId = req.currentUser._id
 
-    if (productsToAddToBasket.likedBy.includes(userId)) {
-      productsToAddToBasket.likedBy.remove(userId)
-    } else {
-      productsToAddToBasket.likedBy.push(userId)
-    }
-    await productsToAddToBasket.save()
-    return res.status(202).json(productsToAddToBasket)
+    const alreadyInBasket = product.basket.includes(userId)
+
+    const updateBasket = await Product.findByIdAndUpdate(productId, {
+      [alreadyInBasket ? '$pull' : '$addToSet']: { basket: userId }
+    }, { new: true })
+
+    return res.status(202).json(updateBasket)
   } catch (err) {
     next(err)
   }

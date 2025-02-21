@@ -37,11 +37,11 @@ router.route('/basket/:userId')
 
 // toggle item to basket
 router.route('/shop/:productId/basket')
-  .post(secureRoute, basketController.toggleBasketItem)
+  .put(secureRoute, basketController.toggleBasketItem)
 
 // delete from basket
-router.route('/basket/:userId/:productId')
-  .delete(secureRoute, basketController.deleteBasketItem)
+// router.route('/basket/:userId/:productId')
+//   .delete(secureRoute, basketController.deleteBasketItem)
 
 
 export default router

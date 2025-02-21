@@ -9,8 +9,8 @@ async function seed() {
     console.log('🤖🌱 Database Connected')
 
     // * MongoServerError: user is not allowed to do action [dropDatabase] on [urban-footwear-db.]
-    // await truncateDb()
-    // console.log('🤖🌱 Data Dropped')
+    await truncateDb()
+    console.log('🤖🌱 Data Dropped')
 
     const adminUser = await User.create({
       username: 'admin',

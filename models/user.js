@@ -16,7 +16,7 @@ userSchema
   .virtual('basket', {
     ref: 'Product',
     localField: '_id',
-    foreignField: 'likedBy',
+    foreignField: 'basket',
   })
   .get(function (basketProducts) {
     if (!basketProducts) return "Basket is empty"
