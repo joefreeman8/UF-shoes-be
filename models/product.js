@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   description: { type: String, required: true },
   reviews: [reviewSchema], // embedded here so if the product gets deleted then so does the comment.
-  likedBy: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+  basket: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   addedBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   rating: { type: Number, min: 1, max: 5 }
 })
