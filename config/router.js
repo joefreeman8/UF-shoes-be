@@ -40,8 +40,11 @@ router.route('/shop/:productId/basket')
   .put(secureRoute, basketController.toggleBasketItem)
 
 // delete from basket
-// router.route('/basket/:userId/:productId')
-//   .delete(secureRoute, basketController.deleteBasketItem)
+router.route('/basket/:userId/:productId')
+  .delete(secureRoute, basketController.deleteBasketItem)
 
+
+router.route('/basket')
+  .delete(secureRoute, basketController.clearBasket)
 
 export default router

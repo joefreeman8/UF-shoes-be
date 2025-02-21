@@ -53,8 +53,8 @@ async function deleteBasketItem(req, res, next) {
     }
     const userId = req.currentUser._id
 
-    if (productToDeleteFromBasket.likedBy.includes(userId)) {
-      productToDeleteFromBasket.likedBy.remove(userId) // potentially need to change this to deleteOne()
+    if (productToDeleteFromBasket.basket.includes(userId)) {
+      productToDeleteFromBasket.basket.remove(userId) // potentially need to change this to deleteOne()
     }
     await productToDeleteFromBasket.save()
     return res.sendStatus(204)
@@ -63,8 +63,28 @@ async function deleteBasketItem(req, res, next) {
   }
 }
 
+async function clearBasket(req, res, next) {
+  const userId = req.currentUser._id
+  try {
+    const products = await Product.updateMany(
+      { basket: userId },
+      { $pull: { basket: userId } }
+    )
+
+    if (!products) {
+      throw new NotFound()
+    }
+
+    res.sendStatus(204)
+
+  } catch (err) {
+    next(err)
+  }
+}
+
 export default {
   viewBasket: basket,
   deleteBasketItem,
-  toggleBasketItem
+  toggleBasketItem,
+  clearBasket
 }
